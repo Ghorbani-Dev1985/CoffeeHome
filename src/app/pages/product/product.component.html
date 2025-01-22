@@ -52,7 +52,7 @@
        <div>
       <div class="flex-center gap-x-1.5">
          <p class="badge">{{productAttr.name}}</p>
-         <select [id]="productAttr.id" [(ngModel)]="selectedAttr[$index]" class="bg-white border border-secondary text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2">
+         <select [id]="productAttr.id" [(ngModel)]="selectedAttr[$index]" (ngModelChange)="onAttributeChange()" class="bg-white border border-secondary text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2">
            <option value="0" selected disabled>لطفا یکی از موارد را انتخاب نمایید</option>
            @for (productAttrOption of productAttr.options; track $index) {
              <ng-container>
@@ -62,7 +62,7 @@
         </select>
       </div>
     </div>}
-    <div class="flex-center gap-x-2">
+    <div class="flex items-center gap-x-2">
       <div class="flex-between px-2 py-1 w-[102px] h-10 bg-white shadow-md rounded-lg text-primary">
         <button (click)="increaseQty()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
@@ -84,7 +84,9 @@
         </button>
         }
       </div>
-      <button (click)="addToCartHandler()" class="main-btn">افزودن به سبد</button>
+      @if(!isInCart){
+        <button (click)="addToCartHandler()" class="main-btn">افزودن به سبد</button>
+      }
     </div>
     <p class="w-full h-px bg-pink-200"></p>
     @if(product.sku !== "" ){
