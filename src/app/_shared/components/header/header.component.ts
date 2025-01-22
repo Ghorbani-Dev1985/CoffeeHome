@@ -13,7 +13,7 @@ import { CartComponent } from "./cart/cart.component";
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit{
-  cartService : CartService = inject(CartService)
+cartService : CartService = inject(CartService)
   showMobileMenu : boolean = false;
   categoriesNav: Array<{id: string, name: string }> = categoriesItems;
   cartItems: any[] = [];

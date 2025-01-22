@@ -72,12 +72,11 @@ onAttributeChange(): void {
 }
  increaseQty(){
   this.quantity++;
-  //this.cartService.updateCart(this.productId, this.selectedAttr, this.quantityInCart);
+  this.isInCart = false;
  }
  decreaseQty(){
   if(this.quantity > 1){
     this.quantity -= 1;
-   // this.cartService.updateCart(this.productId, this.selectedAttr, this.quantityInCart);
     }
  }
  addToCartHandler(){

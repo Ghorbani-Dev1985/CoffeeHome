@@ -1,6 +1,9 @@
 <div
   class="hidden md:block absolute z-50 top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible w-[400px] text-zinc-800 p-2 space-y-4 bg-white tracking-normal border-b-[3px] border-primary shadow-xl rounded-xl transition-all delay-75 child:flex"
 >
+@if(cartItems.length === 0){
+   <p class="text-amber-500 flex-center font-bold my-3">سبد خرید شما خالی می باشد!</p>
+}@else {
   <p>{{ cartItems.length }}کالا</p>
   <div class="max-h-[360px] overflow-auto flex flex-col gap-y-2">
     @for (cartItem of cartItems; track $index) {
@@ -56,4 +59,6 @@
     </div>
     <button class="main-btn max-w-24">ثبت سفارش</button>
   </div>
+}
+
 </div>
