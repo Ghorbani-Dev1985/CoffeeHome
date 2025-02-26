@@ -1,0 +1,53 @@
+<div
+  class="w-full flex flex-col items-center gap-y-4 my-8 border-b-2 border-b-gray-200">
+  <h2
+    class="flex items-center gap-x-1.5 text-xl font-extrabold text-primary -mb-[2px] pb-3 border-b-2 border-b-primary">
+    {{this.categoryName}} <p *ngIf="countOfProducts" class="flex-center size-7 bg-secondary rounded-full">{{this.countOfProducts}}</p>
+  </h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  @if (isLoading) {
+    <ng-container>
+      @for (_ of [].constructor(12); track $index) {
+        <app-loading></app-loading>
+      }
+    </ng-container>
+  }@else {
+      @for (productByCategory of productsByCategory; track $index) {
+        <app-product-card [product]="productByCategory" [isLoading]="isLoading"></app-product-card>
+      }
+  }
+    @if (currentPage > 1) {
+ <div class="col-span-4 flex-center">
+    <nav aria-label="Page navigation example">
+      <ul class="flex items-center -space-x-px h-8 text-sm">
+        <li>
+         <button (click)="goFirstPage()" class="flex-center bg-secondary text-primary border border-primary text-base rounded-s-lg px-3 h-9">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+            <path fill-rule="evenodd" d="M13.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L11.69 12 4.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M19.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06L17.69 12l-6.97-6.97a.75.75 0 0 1 1.06-1.06l7.5 7.5Z" clip-rule="evenodd" />
+          </svg>
+            <span class="ml-1.5">صفحه اول</span>
+          </button>
+       </li>
+        <li>
+          <button (click)="prevPage()" [disabled]="currentPage === 1" class="flex-center bg-secondary text-primary border border-primary text-base px-3 h-9">
+            <svg class="size-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+            </svg>
+            <span class="mr-1.5">صفحه قبل</span>
+          </button>
+        </li>
+        <li>
+          <button (click)="nextPage()" class="flex-center bg-secondary text-primary border border-primary text-base rounded-e-lg px-3 h-9">
+            <span class="ml-1.5">صفحه بعد</span>
+            <svg class="size-4 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+    }
+</div>

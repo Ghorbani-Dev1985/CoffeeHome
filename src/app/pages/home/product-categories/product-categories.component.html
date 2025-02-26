@@ -1,0 +1,7 @@
+<div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+  @for (categoryLinkItems of categoriesLinkItems; track $index) {
+    <div>
+       <img (click)="navigateToCategory(categoryLinkItems.id , categoryLinkItems.alt)" [src]="'images/categories/' + categoryLinkItems.src" [alt]="categoryLinkItems.alt" class="rounded-xl hover:animate-pulse cursor-pointer">
+    </div>
+  }
+</div>

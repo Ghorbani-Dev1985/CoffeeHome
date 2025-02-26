@@ -1,0 +1,39 @@
+<footer class="bg-footerBg bg-no-repeat bg-cover border-t border-t-primary">
+ <div class="container p-12">
+   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="flex flex-col items-center gap-y-2 font-bold">
+      <img aly="بوتیک زیپ" src="images/logo/ZIPLogo.png" class="size-24">
+      <h2 class="font-extrabold text-xl pb-4 border-b border-primary border-dashed">بوتیک زیپ پلاس</h2>
+      <p class="leading-9">
+       آدرس:گیلان، رشت، محله مطهری(بین سوخته تکیه و مسجد صفی)، بعد از کوچه بازار مسگران، بلوار شهید مطهری، جنب پاساژ امیر
+       طبقه همکف
+      </p>
+      <a href="tel:+981333222266">تلفن فروشگاه: ۰۱۳۳۳۲۲۲۲۶۶</a>
+      <a href="https://wa.me/+989111342501">واتس اپ : ۰۹۱۱۱۳۴۲۵۰۱ </a>
+    </div>
+    <div>
+    <h5 class="pb-4 border-b border-primary border-dashed"> دسته بندی محصولات</h5>
+     <ul class="font-extrabold child:py-3">
+      @for (categoryNav of categoriesNav; track $index) {
+        <li class="hover:pr-1.5 transition-all ease-linear duration-300"><a [routerLink]="['/category/', categoryNav.id]" class="flex items-center gap-x-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 fill-primary">
+          <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z" clip-rule="evenodd" />
+        </svg>
+         <span>{{categoryNav.name}}</span></a></li>
+      }
+      </ul>
+    </div>
+    <div>
+      <h5 class="pb-4 border-b border-primary border-dashed"> نماد اعتماد </h5>
+    </div>
+   </div>
+ </div>
+  <p class="w-full h-px bg-black/10"></p>
+  <div class="container py-5">
+     <div class="w-full flex flex-col items-center md:flex-row md:flex-between text-zinc-600">
+       <p>
+         تمامی حقوق مادی و معنوی سایت و تصاویر محصولات نزد فروشگاه زیپ پلاس محفوظ است.</p>
+         <a href="https://github.com/Ghorbani-Dev1985/" target="_blank">Developed By <span class="font-extrabold">GHORBANI.DEV</span></a>
+     </div>
+  </div>
+</footer>

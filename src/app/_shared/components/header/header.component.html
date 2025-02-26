@@ -9,22 +9,23 @@
        <nav>
          <ul class="flex-center gap-x-3">
            <li><a href="">صفحه نخست</a></li>
-           <li><a href=""> محصولات زیپ پلاس</a></li>
+           <li><a href="/products"> محصولات زیپ پلاس</a></li>
            <li><a href=""> تماس با ما</a></li>
          </ul>
        </nav>
       </div>
       <div class="flex-center gap-x-3">
         <!-- Cart -->
-         <div class="flex-center relative gap-x-2 bg-primary text-white rounded-[2.5rem] p-1">
+         <a href="/cart" class="flex-center hover:text-white relative gap-x-1 group bg-primary text-white rounded-[2.5rem] p-1">
           <p class="flex-center size-8 bg-white rounded-full">
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="size-6 stroke-zinc-700">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
           </svg>
           </p>
-          <span> 0 تومان</span>
-          <p class="absolute -left-1 -top-1 bg-white text-primary flex-center rounded-full size-4">0</p>
-        </div>
+          <span> {{totalCartPrice | priceLocaleString}} تومان</span>
+          <p class="absolute -left-1 -top-1 bg-white text-primary flex-center rounded-full size-4">{{cartItems.length}}</p>
+          <app-cart></app-cart>
+        </a>
         <!-- Login -->
         <div class="flex-center gap-x-1">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -58,7 +59,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
           </svg>
           </p>
-          <p class="absolute -left-1 -top-1 bg-white text-primary flex-center rounded-full size-4">0</p>
+          <p class="absolute -left-1 -top-1 bg-white text-primary flex-center rounded-full size-4">{{cartItems.length}}</p>
         </div>
       </div>
   </div>
@@ -79,14 +80,12 @@
 <!-- Mobile Menu -->
   <div
   class='fixed inset-0 bg-secondary-50/40 z-50 backdrop-blur-sm will-change-["opacity,backdrop"]' [ngClass]="
-    showMobileMenu ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'" (click)="showMobileMenu = false"
->
+    showMobileMenu ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'" (click)="showMobileMenu = false">
   <aside
     class='absolute bg-white top-0 right-0 h-full py-md px-1 shadow-md w-3/4 md:w-1/2 will-change-transform transition-transform duration-700 ease-in-out overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-primary scrollbar-track-primary-100' [ngClass]="
-    showMobileMenu ? 'right-0 translate-x-0' : 'right-0 translate-x-full'"
-  >
+    showMobileMenu ? 'right-0 translate-x-0' : 'right-0 translate-x-full'">
     <div class="w-full flex-between mb-md px-1.5 py-6 border-b">
-      <h1 class="font-extrabold">بوتیک زیپ</h1>
+      <h1 class="font-extrabold">بوتیک زیپ پلاس</h1>
       <button (click)="showMobileMenu = false">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -95,13 +94,10 @@
     </div>
     <nav class="py-5">
       <ul class="font-extrabold child:py-3 child:border-b">
-        <li><a href="">صفحه نخست</a></li>
-        <li><a href=""> پالتو</a></li>
-        <li><a href=""> شال و روسری</a></li>
-        <li><a href=""> کت جین</a></li>
-        <li><a href=""> شلوار</a></li>
-        <li><a href=""> دامن جین</a></li>
-        <li><a href=""> بادی بلوز بافت کراپ</a></li>
+        <li><a [routerLink]="['/']">صفحه نخست</a></li>
+        @for (categoryNav of categoriesNav; track $index) {
+          <li><a [routerLink]="['/category/', categoryNav.id]"> {{categoryNav.name}}</a></li>
+        }
         <li><a href=""> تماس با ما</a></li>
         <li><a href="">  حساب کاربری</a></li>
       </ul>

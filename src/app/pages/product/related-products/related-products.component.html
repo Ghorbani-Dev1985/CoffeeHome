@@ -1,0 +1,23 @@
+<div
+  class="w-full flex flex-col items-center gap-y-4 my-8 border-b-2 border-b-gray-200">
+  <h2
+    class="flex items-center gap-x-1.5 text-xl font-extrabold text-primary -mb-[2px] pb-3 border-b-2 border-b-primary">پیشنهاد ویژه
+  </h2>
+</div>
+@if (isLoading) {
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+    <ng-container>
+      @for (_ of [].constructor(3); track $index) {
+        <app-loading></app-loading>
+      }
+    </ng-container>
+  </div>
+  }@else {
+    <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" loop="false" autoplay-delay="4000" space-between="10" slides-per-view="1" navigation="true" free-mode="true" [breakpoints]="breakpoints">
+      @for (relatedProduct of relatedProducts; track $index) {
+        <swiper-slide>
+        <app-product-card [product]="relatedProduct" [isLoading]="isLoading"></app-product-card>
+        </swiper-slide>
+      }
+    </swiper-container>
+  }

@@ -1,0 +1,65 @@
+@if (cartItems.length === 0) {
+    <div class="flex flex-col items-center gap-y-8">
+     <img src="/images/cart/empty-cart.svg" alt="empty" class="size-44 md:size-96">
+     <p>سبد خرید شما خالی است!</p>
+     <a href="/" class="text-gray-900 bg-gradient-to-r from-pink-200 via-pink-300 to-pink-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">بازکشت به صفحه اصلی</a>
+    </div>
+}@else {
+  <div class="flex-between gap-4">
+  <div class="w-3/4">
+    <div class="flex-between">
+      <p class="font-bold my-3">سبد خرید شما: <span class="text-neutral-400">{{cartItems.length}}مرسوله</span></p>
+      <button (click)="showModal = true" class="relative inline-flex items-center justify-center p-0.5 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-rose-600 to-rose-100 group-hover:from-rose-100 group-hover:to-rose-600 hover:text-white">
+        <span class="relative px-2 py-1 transition-colors bg-white rounded-md group-hover:bg-opacity-0">
+       حذف همه
+        </span>
+      </button>
+        </div>
+  <div class="w-full space-y-5 max-h-screen overflow-auto scroll-smooth scrollbar-thin scrollbar-thumb-primary scrollbar-track-secondary">
+    @for (cartItem of cartItems; track $index) {
+<div class="flex flex-col bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 transition-colors">
+  <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" [src]="cartItem.images[0].src" [alt]="cartItem.images[0].alt">
+  <div class="flex flex-col justify-between p-4 leading-normal">
+      <h5 class="mb-2 text-2xl font-bold tracking-tight">{{cartItem.name}}</h5>
+       <ul class="space-y-2">
+        @for (attr of cartItem.selectedAttr; track $index) {
+          <li>{{attr}}</li>
+        }
+        <li>تعداد : <span class="text-textColor font-bold">{{cartItem.quantity}}</span></li>
+       </ul>
+       <p class="flex items-center gqap-x-1.5 font-extrabold text-primary text-3xl">{{cartItem.price}}<app-toman></app-toman></p>
+  </div>
+</div>
+
+    }
+  </div>
+  </div>
+  <div class="w-1/4"></div>
+</div>
+}
+
+
+
+
+<!-- Modal -->
+ @if (showModal) {
+  <div (click)="showModal = false" class="w-full h-full fixed top-0 left-0 right-0 bg-gray-300 backdrop-blur-sm bg-transparent/10">
+  <div class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative p-4 w-full max-w-md max-h-full">
+      <div class="relative bg-white rounded-lg shadow-xl border">
+          <div class="p-4 md:p-5 text-center">
+              <svg class="mx-auto mb-4 text-rose-500 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+              </svg>
+              <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">آیا از حذف همه موارد سبد خرید خود اطمینان دارید؟</h3>
+              <button (click)="deleteAllCartHandler()" data-modal-hide="popup-modal" type="button" class="text-rose-500 border border-rose-500 hover:bg-rose-500 hover:text-white font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center transition-colors">
+                 بله حذف شود
+              </button>
+              <button (click)="showModal = false" data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-gray-200 rounded-lg border border-gray-200 hover:bg-gray-300 transition-colors">خیر انصراف</button>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+ }
+

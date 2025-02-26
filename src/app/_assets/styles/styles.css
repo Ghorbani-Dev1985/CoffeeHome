@@ -9,7 +9,7 @@
     @apply p-0 m-0 box-border font-ShabnamFD;
   }
   html {
-    @apply scroll-smooth font-ShabnamFD;
+    @apply font-ShabnamFD scroll-smooth scrollbar-thin scrollbar-thumb-primary scrollbar-track-secondary;
   }
   body {
     @apply bg-white font-ShabnamFD text-base text-textColor min-h-screen;
@@ -37,5 +37,11 @@
   .dir-ltr {
     text-align: left;
     direction: ltr;
+  }
+  .main-btn{
+    @apply flex-center flex-1 h-10 rounded-lg bg-primary text-white border-2 border-primary hover:bg-white hover:text-primary transition-colors
+  }
+  .badge{
+    @apply bg-pink-100 text-pink-800 text-xs font-medium me-1.5 p-2 rounded-lg border border-pink-400
   }
 }

@@ -26,6 +26,9 @@ module.exports = {
         ShabnamFD: ["Shabnam-FD", "Tahoma"],
         Shabnam: ["Shabnam", "Tahoma"],
       },
+      backgroundImage: {
+        'footerBg' : 'url("/images/footer/footer-bg.png")',
+      }
     },
   },
   plugins: [
@@ -33,5 +36,6 @@ module.exports = {
       addVariant("child", "& > *");
       addVariant("child-hover", "& > *:hover");
     },
+    require("tailwind-scrollbar"),
   ],
 }

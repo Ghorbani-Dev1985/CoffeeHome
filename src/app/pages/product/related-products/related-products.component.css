@@ -1,0 +1,16 @@
+swiper-container {
+  width: 100%;
+  height: 100%;
+  --swiper-theme-color: #ec4899;
+  --swiper-pagination-bullet-horizontal-gap: 5px;
+  --swiper-pagination-bullet-size: 10px;
+  --swiper-pagination-bullet-width: 30px;
+  --swiper-pagination-bullet-height: 8px;
+  --swiper-pagination-bullet-border-radius: 3px;
+  --swiper-pagination-bottom: -8px;
+}
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+  @apply w-5 h-7 bg-white rounded-lg p-1.5;
+}
+
